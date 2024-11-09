@@ -10,7 +10,7 @@ public class GameOfLife {
     cellAddedListeners.add(cellAddedListener);
   }
 
-  public void addCell(Cell cell) {
+  public void addCell(Position cell) {
     cellAddedListeners.forEach(cellAddedListener -> cellAddedListener.process(cell));
   }
 }

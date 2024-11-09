@@ -1,5 +1,5 @@
 package game_of_life;
 
-public interface CellAddedListener {
+public interface DieListener {
   void process(Position cell);
 }
