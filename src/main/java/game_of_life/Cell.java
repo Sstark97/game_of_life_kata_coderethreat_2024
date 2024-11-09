@@ -1,31 +1,25 @@
 package game_of_life;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cell {
+  private Map<Integer, State> foo = Map.of(0, State.dead(), 1, State.dead(), 2, State.dead(), 3, State.alive(), 4, State.dead());
+  private State state = new State(true);
 
-  private State state;
-
-  public Cell() {
-    this.state = State.DEAD;
+  public State isAlive() {
+    return state;
   }
 
-  public Cell(State state) {
-    this.state = state;
+  void kill() {
+    state = new State(false);
   }
 
-
-  public State getState() {
-    return this.state;
+  void kill(boolean newState) {
+    state = new State(newState);
   }
 
-  public void iterate(List<Cell> neighbourCells) {
-    var countAliveCells = neighbourCells.stream().filter(cell -> cell.state.equals(State.ALIVE)).count();
-
-    if (countAliveCells == 3) this.state = State.ALIVE;
-    else {
-      this.state = State.DEAD;
-    }
-
+  public void nextStep(Integer neighbours) {
+    kill(foo.get(neighbours).value());
   }
 }
